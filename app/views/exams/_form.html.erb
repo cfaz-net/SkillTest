@@ -1,0 +1,104 @@
+<div class="modal-header">
+  <h5 class="modal-title">Exam Form</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%= form_with(model: [@patient, @exam], data: { type: :json, exam: 'form' }) do |form| %>
+  <div class="modal-body">
+    <%= form.hidden_field  :patient_id, data: { 'exams-patient-id': @patient.id } %>
+      <div class="row">
+        <div class="col-md-12">
+        <legend>Po point</legend>
+          <div class="row">
+            <%= form.fields_for :point_po do |po_form| %>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= po_form.label :x %>
+                  <%= po_form.text_field :x, class: "form-control", data: { exams: 'field', 'field-name': 'po-x' } %>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= po_form.label :y %>
+                  <%= po_form.text_field :y, class: "form-control", data: { exams: 'field', 'field-name': 'po-y' } %>
+                </div>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+        <legend>Or point</legend>
+          <div class="row">
+            <%= form.fields_for :point_or do |or_form| %>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= or_form.label :x %>
+                  <%= or_form.text_field :x, class: "form-control", data: { exams: 'field', 'field-name': 'or-x' } %>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= or_form.label :y %>
+                  <%= or_form.text_field :y, class: "form-control", data: { exams: 'field', 'field-name': 'or-y' } %>
+                </div>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+        <legend>N Point</legend>
+          <div class="row">
+            <%= form.fields_for :point_n do |n_form| %>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= n_form.label :x %>
+                  <%= n_form.text_field :x, class: "form-control", data: { exams: 'field', 'field-name': 'n-x' } %>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= n_form.label :y %>
+                  <%= n_form.text_field :y, class: "form-control", data: { exams: 'field', 'field-name': 'n-y' } %>
+                </div>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+        <legend>A point</legend>
+          <div class="row">
+            <%= form.fields_for :point_a do |a_form| %>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= a_form.label :x %>
+                  <%= a_form.text_field :x, class: "form-control", data: { exams: 'field', 'field-name': 'a-x' } %>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= a_form.label :y %>
+                  <%= a_form.text_field :y, class: "form-control", data: { exams: 'field', 'field-name': 'a-y' } %>
+                </div>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+<% end %>
+

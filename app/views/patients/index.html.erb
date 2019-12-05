@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Patients</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.name %></td>
+        <td>
+          <div class="float-right">
+          <%= link_to 'Show', patient, class: "btn btn-sm btn-secondary" %>
+          <%= link_to 'Edit', edit_patient_path(patient), class: "btn btn-sm btn-secondary" %>
+          <%= link_to 'Destroy', patient, class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Patient', new_patient_path, class: "btn btn-primary" %>

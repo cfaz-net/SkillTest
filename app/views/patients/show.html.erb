@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Point Po</th>
+      <th>Point Or</th>
+      <th>Point N</th>
+      <th>Point A</th>
+      <th>Angle</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody data-exams='exams' data-exams-patient-id='<%= @patient.id %>'>
+  </tbody>
+</table>
+
+
+<%= link_to 'Edit', edit_patient_path(@patient), class: "btn btn-secondary float-right" %>
+<%= button_tag 'Add Exam', type: 'button', class: "btn btn-primary float-right", data: { exams: 'btn-create'} %>
+<%= link_to 'Back', patients_path, class: "btn btn-secondary"  %>
+
+
+<div class="modal" tabindex="-1" role="dialog" data-exams='modal'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      <strong>Patient:</strong>
+      <%= @patient.name %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    Point Po <br> <%= "x: #{@exam.point_po.x}, y: #{@exam.point_po.y}" %>
+  </div>
+  <div class="col-md-2">
+    Point Or <br> <%= "x: #{@exam.point_or.x}, y: #{@exam.point_or.y}" %>
+  </div>
+  <div class="col-md-2">
+    Point N <br> <%= "x: #{@exam.point_n.x}, y: #{@exam.point_n.y}" %>
+  </div>
+  <div class="col-md-2">
+    Point A <br> <%= "x: #{@exam.point_a.x}, y: #{@exam.point_a.y}" %>
+  </div>
+  <div class="col-md-2">
+    Angle <br> <%= @exam.maxillary_depth_angle %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12" data-view3d='wrapper'>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="actions">
+      <%= link_to 'Back', patient_path(@patient), class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>
