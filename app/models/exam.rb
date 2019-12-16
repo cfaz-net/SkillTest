@@ -12,6 +12,13 @@ class Exam < ApplicationRecord
   accepts_nested_attributes_for :point_a
 
   def maxillary_depth_angle
-    return nil if self.point_po.x.nil? or self.point_po.y.nil? or self.point_or.x.nil? or self.point_or.y.nil? or self.point_n.x.nil? or self.point_n.y.nil? or self.point_a.x.nil? or self.point_a.y.nil?
+    angle1 = Math.atan2((self.point_po.y - self.point_or.y), (self.point_po.x - self.point_or.x))
+    angle2 = Math.atan2((self.point_n.y - self.point_a.y), (self.point_n.x - self.point_a.x))
+    mda = angle2 - angle1
+    if self.point_po.x.nil? or self.point_po.y.nil? or self.point_or.x.nil? or self.point_or.y.nil? or self.point_n.x.nil? or self.point_n.y.nil? or self.point_a.x.nil? or self.point_a.y.nil?
+      return nil
+    else
+      return mda
+    end
   end
 end
