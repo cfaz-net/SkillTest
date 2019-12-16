@@ -14,4 +14,8 @@ Exams.Backend = class{
   editPath(examId){
     return `/patients/${this.patientId}/exams/${examId}/edit`
   }
+
+  destroyPath(examId){
+    return `/patients/${this.patientId}/exams/${examId}`
+  }
 }
