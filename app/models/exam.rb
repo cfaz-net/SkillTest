@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Exam < ApplicationRecord
   belongs_to :patient
 
-  belongs_to :point_po, class_name: "Point", :foreign_key => 'point_po_id', dependent: :destroy
-  belongs_to :point_or, class_name: "Point", :foreign_key => 'point_or_id', dependent: :destroy
-  belongs_to :point_a, class_name: "Point", :foreign_key => 'point_n_id', dependent: :destroy
-  belongs_to :point_n, class_name: "Point", :foreign_key => 'point_a_id', dependent: :destroy
+  belongs_to :point_po, class_name: 'Point', foreign_key: 'point_po_id', dependent: :destroy
+  belongs_to :point_or, class_name: 'Point', foreign_key: 'point_or_id', dependent: :destroy
+  belongs_to :point_a, class_name: 'Point', foreign_key: 'point_n_id', dependent: :destroy
+  belongs_to :point_n, class_name: 'Point', foreign_key: 'point_a_id', dependent: :destroy
 
   accepts_nested_attributes_for :point_po
   accepts_nested_attributes_for :point_or
@@ -12,6 +14,10 @@ class Exam < ApplicationRecord
   accepts_nested_attributes_for :point_a
 
   def maxillary_depth_angle
-    return nil if self.point_po.x.nil? or self.point_po.y.nil? or self.point_or.x.nil? or self.point_or.y.nil? or self.point_n.x.nil? or self.point_n.y.nil? or self.point_a.x.nil? or self.point_a.y.nil?
+    if point_po.x.nil? || point_po.y.nil? || point_or.x.nil? || point_or.y.nil? || point_n.x.nil? || point_n.y.nil? || point_a.x.nil? || point_a.y.nil?
+      return nil
+    end
+
+    Calculus::MaxillaryDepthAngle.call(point_n, point_a, point_po, point_or)
   end
 end
