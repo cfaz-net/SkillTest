@@ -12,6 +12,7 @@ Exams.Gui = class{
   bindingEvents(){
     this.$btnCreate.on("click", (e) => this.btnClickHandlerToShowCreateForm(e))
     this.$tbody.on("click", "[data-exams='btn-edit']", (e) => this.btnClickHandlerToShowEditForm(e))
+    this.$tbody.on("click", "[data-exams='btn-delete']", (e) => this.btnClickHandlerToDeleteField(e))
     this.$modal.on('click', "[data-exam='btn-save']", (e) => this.btnClickHandlerToSaveExam(e))
     this.$modal.on("ajax:success", 'form', (e) => this.responseSuccessHandler(e))
     this.$modal.on("ajax:error", 'form', (e) => this.responseErrorHandler())
@@ -42,6 +43,39 @@ Exams.Gui = class{
     this.loadFormOnModal(this.backend.editPath(examId))
   }
 
+ 
+
+  btnClickHandlerToDeleteField(e){
+
+    var deleteLinks = document.querySelectorAll('.delete');
+
+    for (var i = 0; i < deleteLinks.length; i++) {
+      deleteLinks[i].addEventListener('click', function(event) {
+        event.preventDefault();
+    
+        var choice = confirm(this.getAttribute('data-confirm'));
+        alert(choice);
+        if (choice) {
+          window.location.href = this.getAttribute('href');
+        }
+      });
+    }
+    
+    let examId = $(e.target).closest('[data-exam-id]').data().examId
+    let tbr = this.$tbody[0].rows.length
+    console.log($(e.target).closest('[data-confirm]'));
+    for(let i=0; i<tbr; i++){
+      if(this.$tbody[0].rows[i].dataset.examId == examId){
+        //console.log(this.$tbody[0].rows[i].dataset.examId);
+        this.$tbody[0].rows[i].remove();
+        
+      }
+    }
+
+  }
+
+ 
+
   btnClickHandlerToShowCreateForm(e){
     this.loadFormOnModal(this.backend.newPath())
   }
@@ -69,7 +103,7 @@ Exams.Gui = class{
       <div class="float-right">
         <a class="btn btn-sm btn-secondary" href="/patients/${exam.patientId}/exams/${exam.id}">Show</a>
         <button class="btn btn-sm btn-secondary" type='button' data-exams='btn-edit'>Edit</button>
-        <a class="btn btn-sm btn-danger" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/patients/${exam.patientId}/exams/${exam.id}">Destroy</a>
+        <a class="btn btn-sm btn-danger" rel="nofollow" data-method="delete" data-exams='btn-delete' href="/patients/${exam.patientId}/exams/${exam.id}">Destroy</a>
       </div>
     </td>`
     return html += `</tr>`

@@ -54,7 +54,7 @@ class ExamsController < ApplicationController
   def destroy
     @exam.destroy
     respond_to do |format|
-      format.html { redirect_to patient_url(@patient), notice: 'Exam was successfully destroyed.' }
+      format.html { head :no_content, notice: 'Exam was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
