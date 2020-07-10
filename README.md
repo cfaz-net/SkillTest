@@ -27,6 +27,6 @@ Separamos o teste em três partes e cada parte testa um conhecimento. Faça o ma
 - Implementar ações de movimento de câmera para visualizar os planos de outros ângulos. (dica: utilizar o THREE.TrackballControls)
 
 ## Entrega
-O prazo para realização da atividade será contabilizado a partir da sua confirmação de recebimento do email com esta atividade.
+O prazo de entrega será definido por você. Responda o email com o prazo que você precisa para realizar esta atividade.
 
 Boa sorte!
